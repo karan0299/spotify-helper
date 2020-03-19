@@ -19,7 +19,7 @@ class LoginButton extends Component {
             data: {
                 'client_id': this.state.client_id,
                 'response_type': "token",
-                'redirect_uri': "http://localhost:3000/home"
+                'redirect_uri': "https://spotifyrescues.herokuapp.com/home"
             }
         })
             .then(res => {
@@ -30,7 +30,7 @@ class LoginButton extends Component {
         var url = 'https://accounts.spotify.com/authorize?client_id=' + this.state.client_id +
             '&response_type=token' +
             '&scope=playlist-read-private%20playlist-modify%20playlist-modify-private' +
-            '&redirect_uri=' + encodeURIComponent('http://localhost:3000/home');
+            '&redirect_uri=' + encodeURIComponent('https://spotifyrescues.herokuapp.com/home');
 
         // localStorage.setItem('createplaylist-tracks', JSON.stringify(g_tracks));
         // localStorage.setItem('createplaylist-name', g_name);
