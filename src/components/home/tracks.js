@@ -7,25 +7,40 @@ class TrackList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tracks: props.tracks
+            tracks: props.tracks,
+            lgview: props.lgview
         }
     }
-
+    componentWillReceiveProps(nextProps) {
+        this.setState({ tracks: nextProps.tracks });
+        this.setState({ lgview: nextProps.lgview });
+        this.forceUpdate()
+    }
+    shouldComponentUpdate(nextProps) {
+        console.log(nextProps.tracks)
+        return true
+    }
     render() {
         const style = {
             margin: "50 px",
-            marginTop: " 100 px"
+            marginTop: " 100 px",
         }
         return (
             <div className="grid">
-                <StackGrid
+                {!this.state.lgview ? (<StackGrid
                     columnWidth={300}
                     style={style}
-                    gutterWidth={40}
-                    gutterHeight={20}
+                    gutterWidth={10}
+                    gutterHeight={10}
                 >
-                    {this.state.tracks.map((track) => <Track track={track} />)}
-                </StackGrid>
+                    {this.state.tracks.map((track) => <Track track={track} lview={false} />)}
+                </StackGrid>) : (<StackGrid
+                    columnWidth={1000}
+                    style={style}
+                    gutterHeight={10}
+                >
+                    {this.state.tracks.map((track) => <Track track={track} lview={true} />)}
+                </StackGrid>)}
             </div>
         )
     }
